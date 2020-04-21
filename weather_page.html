@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+ 
+    <body>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">world hub</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+   <span class="navbar-toggler-icon"></span>
+   </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+    <a class="nav-link" href="file:///C:/Users/hwats/Documents/code/hub_home.html">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="file:///C:/Users/Hwats/Documents/HENRY/html/weather2.html">weather</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" >Action</a>
+          <a class="dropdown-item" >Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" >Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">feed</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>        
+
+
+	<div class="container">
+		
+		<div id="content"></div>
+	</div>
+        
+        
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<!-- simulation of what zip seach will look like  -->
+	<!--<span class="location-search">
+		<input type="text" name="input-field" value="" placeholder="Zipcode, or City and State">
+		<button type="button" name="search" class="search"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+	</span> -->
+
+	<section>
+		<h1 id="location" class="info-text"></h1>
+		<!-- <div class="button"><span class="unit">C</span><span id="exchange"><i class="fa fa-exchange" aria-hidden="true"></i></span><span class="unit">F</span></div> -->
+		<div class="main-container">
+			<div class="top">
+				<div class="canvas-description">
+					<canvas id="skycon" width="100" height="100"></canvas>
+					<p id="description" class="info-text"></p>
+				</div>
+				<!-- <div class="faces">
+					<p class="face"><i style="color:#fe5d5d" class="fa fa-frown-o" aria-hidden="true"></i></p>
+					<p class="face"><i style="color:#feae5d" class="fa fa-meh-o" aria-hidden="true"></i></p>
+					<p class="face"><i style="color:#5dfeae" class="fa fa-smile-o" aria-hidden="true"></i></p>
+					<p class="face"><i style="color:#5daefe" class="fa fa-frown-o" aria-hidden="true"></i></p>
+				</div> -->
+				<div class="scale-container">
+					<div class="scale">
+						<div id="fill"></div>
+					</div>
+					<span class="temp"><i class="fa fa-caret-left" aria-hidden="true"></i><p id="temp"></p></span>
+				</div>
+			</div>
+
+			<div class="info-row">
+				<canvas id="rain-canvas" width="30" height="30" title="Chance of rain"></canvas><span id="rain" class="small-info-text"></span>
+				<canvas id="wind-canvas" width="30" height="30" title="Wind speed"></canvas><span id="wind" class="small-info-text"></span>
+				<p id="app-temp" class="small-info-text"></p>
+			</div>
+		</div>
+		<div class="forecast">
+			<div class="day-container1 dc">
+				<div class="info">
+					<p class="day">
+					</p>
+					<canvas id="canvas1" width="50" height="50" class="mini-canvas"></canvas>
+					<span class="mini-temp">
+				</span>
+				</div>
+				<div class="mini-scale">
+					<div class="mini-fill">
+					</div>
+				</div>
+			</div>
+			<div class="day-container2 dc">
+				<div class="info">
+
+					<p class="day">
+					</p>
+					<canvas id="canvas2" width="50" height="50" class="mini-canvas"></canvas>
+					<span class="mini-temp">
+				</span>
+				</div>
+
+				<div class="mini-scale">
+					<div class="mini-fill">
+					</div>
+				</div>
+			</div>
+			<div class="day-container3 dc">
+				<div class="info">
+
+					<p class="day">
+					</p>
+					<canvas id="canvas3" width="50" height="50" class="mini-canvas"></canvas>
+					<span class="mini-temp">
+				</span>
+				</div>
+
+				<div class="mini-scale">
+					<div class="mini-fill">
+					</div>
+				</div>
+			</div>
+			<div class="day-container4 dc">
+				<div class="info">
+
+					<p class="day">
+					</p>
+					<canvas id="canvas4" width="50" height="50" class="mini-canvas"></canvas>
+					<span class="mini-temp">
+				</span>
+				</div>
+
+				<div class="mini-scale">
+					<div class="mini-fill">
+					</div>
+				</div>
+			</div>
+			<div class="day-container5 dc">
+				<div class="info">
+
+					<p class="day">
+					</p>
+					<canvas id="canvas5" width="50" height="50" class="mini-canvas"></canvas>
+					<span class="mini-temp">
+				</span>
+				</div>
+
+				<div class="mini-scale">
+					<div class="mini-fill">
+					</div>
+				</div>
+			</div>
+		</div>
+        
+  
+        
+	</section>
+	
+  	<script src="https://use.fontawesome.com/b5722f1bf7.js"></script>
+<script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
+
+    <script>
+        var gV = {
+    toggled: true,
+}
+
+
+$(document).ready(function() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, error);
+        console.log("nav available");
+    } else {
+        console.log("no nav");
+        geoFail();
+    }
+});
+
+function success(data) {
+    $("section").show();
+    console.log(data.coords.latitude);
+    getWeather(data.coords.latitude, data.coords.longitude);
+    getLocationInfo(null, data.coords.latitude, data.coords.longitude);
+}
+
+function error(err) {
+    console.log("error", err);
+    //allow user to input data
+    geoFail();
+}
+
+
+
+//funtion to get lat and lon based on navigator geolocationName failure or denial
+function geoFail() {
+    var input;
+    //append a zipcode based search to the page
+    $("body").prepend('<div class="location-search"><h1>Find your local weather</h1><span><input type="text" name="input-field" autofocus placeholder="92554 or San Francisco, CA"><button type="button" name="search"><i class="fa fa-search" aria-hidden="true"></i> Search</button></span></div>');
+    //if the search icon/button is clicked, or enter key is pressed...
+    function proccessInput() {
+        //get any zipcode in the users input and use that first
+        input = document.getElementsByName("input-field")[0].value;
+        var re = new RegExp(/\d{5}/, "gi") //searches for 5 consecutive numbers
+        var matched = input.match(re) //returns an array of each instance of 5 consecutive numbers
+        if (matched != null) {
+            //the input is a zipcode
+            getLocationInfo(matched[0]);
+            console.log(matched[0]);
+        } else {
+            //get the city and state values
+            var new_arr = input.split(",");
+            console.log(new_arr);
+            getLocationInfo(null, null, null, new_arr);
+        }
+    }
+
+    $("button").click(function() {
+        proccessInput();
+    });
+    $(window).keypress(function(event) {
+        var code = event.which;
+        if (code === 13) {
+            proccessInput();
+        }
+    });
+}
+
+
+function getLocationInfo(zip, lat, lon, name) {
+    var locationName;
+    if (zip) {
+        console.log("user searched by zip");
+        //call to google geocoding using zip only
+        $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + zip + "&key=AIzaSyCuugDMliUtuYZ1tT2PZbgB_LMvOYi0wFU", (loc) => {
+            locationName = loc.results[0].formatted_address;
+            processCityName(locationName);
+            //get the weather
+            getWeather(loc.results[0].geometry.location.lat, loc.results[0].geometry.location.lng);
+        })
+    } else if (zip === null && lat && lon) {
+        console.log("user used nav");
+        //get the city name based on geographic coords
+        $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lon + "&key=AIzaSyCuugDMliUtuYZ1tT2PZbgB_LMvOYi0wFU", (info) => {
+            for (var i = 0; i < info.results.length; i++) {
+                for (var j = 0; j < info.results[i].types.length; j++) {
+                    if (info.results[i].types[j] == "locality") {
+                        locationName = info.results[i].formatted_address;
+                        processCityName(locationName);
+                    }
+                }
+            }
+        });
+    }
+    //call to google geocoding using city and state
+    else if (zip === null && lat === null && lon ===null && name) {
+        console.log("user searched by name");
+        $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + name[0] + "+" + name[1] + "&key=AIzaSyCuugDMliUtuYZ1tT2PZbgB_LMvOYi0wFU", (loc) => {
+            locationName = loc.results[0].formatted_address;
+            processCityName(locationName);
+            getWeather(loc.results[0].geometry.location.lat, loc.results[0].geometry.location.lng);
+        });
+    }
+
+    //search through the reverse geolocationName info to find the right info
+    function processCityName(location) {
+        //cut out the "USA" part
+        location = location.split(",");
+          for(var f =0; f < location.length -2; f++) {
+            location.pop();
+            }
+        location = location.join(", ");
+        //insert the formatted location
+        var locP = document.getElementById('location');
+        locP.innerText = location;
+    }
+}
+
+
+function getWeather(lat, lon) {
+    //this request has to be done as jsonp because of cross-domain policies on the browser
+    //adding ?callback=? makes the server treat the request as jsonp, the other option would be
+    //to use .ajax(dataType: "jsonp")
+    $.getJSON("https://api.forecast.io/forecast/b59cb056ae86ddcff4531258c647bf0d/" + lat + "," + lon + "?callback=?",
+        function(wData) {
+            console.log(wData);
+            $(".location-search").hide();
+
+            //get main current icon (working!)
+            var current_icon = wData.currently.icon.toUpperCase();
+
+            //create icon objects for current weather
+            var skycon = new Skycons({
+                "color": "black"
+            });
+            var windIcon = new Skycons({
+              "color": "black"
+            });
+            var rainIcon = new Skycons({
+              "color": "black"
+            });
+
+            //add the skyccon icon types
+            skycon.add("skycon", current_icon);
+            rainIcon.add("rain-canvas", "rain");
+            windIcon.add("wind-canvas", "wind");
+
+            //play the icons
+            skycon.play();
+            windIcon.play();
+            rainIcon.play();
+
+
+            var rainProb = wData.currently.precipProbability * 100;
+            var windSpeed = Math.round(wData.currently.windSpeed);
+            var app_temp = Math.round(wData.currently.apparentTemperature);
+
+            tempScale(wData.currently.temperature);
+            tempToggle(wData.currently.temperature, app_temp, wData.daily.data);
+
+            $("#description").html(wData.currently.summary);
+            $("#rain").html(rainProb + "%");
+            $("#wind").html(windSpeed + " Mph");
+            $("#app-temp").html("Feels like: " + app_temp + "&deg;");
+            populateForecast(wData.daily.data);
+
+            $("section").show();
+
+            setTempPosition();
+        });
+}
+
+function populateForecast(forecast_arr) {
+    var date;
+    var day_arr = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var forecast_days;
+    var height;
+    var temp;
+    var color;
+
+    //populating names of days
+    date = new Date;
+    date = date.getDay();
+
+    //populate icons and temperature
+    for (var i = 1; i <= 5; i++) {
+        forecast_days = date + i;
+        if (forecast_days > 6) {
+            forecast_days -= 7;
+        }
+        $(".day-container" + i + " p").html(day_arr[forecast_days]);
+        //end days
+        var mini_icon = new Skycons({
+            "color": "black"
+        })
+        mini_icon.add("canvas" + i, forecast_arr[i].icon);
+        mini_icon.play();
+        //temperature
+        $(".day-container" + i + " span").html(Math.round(forecast_arr[i].temperatureMax) + "&deg;F");
+        //make the color and fill heights for mini scale
+        temp = Math.round(forecast_arr[i].temperatureMax);
+        if (temp >= 0 && temp < 60) {
+            color = "#5daefe";
+        } else if (temp >= 60 && temp < 80) {
+            color = "#5dfeae";
+        } else if (temp >= 80 && temp < 90) {
+            color = "#feae5d";
+        } else {
+            color = "#fe5d5d";
+        }
+        height = forecast_arr[i].temperatureMax;
+        $(".day-container" + i + " .mini-fill").css({
+            "height": height,
+            "background-color": color
+        });
+    }
+}
+
+
+//working
+function tempToggle(tempInF, app_temp, forecast_arr) {
+    tempInF = Math.round(tempInF);
+    var tempInC = Math.round((tempInF - 32) * (5 / 9));
+    var app_tempInC = Math.round((app_temp - 32) * (5 / 9));
+    var tempElement = document.getElementById('temp');
+    tempElement.innerText = tempInF;
+    tempElement.innerHTML += "&deg;F";
+    //attach click handler to toggle to/from F/C
+    $("#temp").click(function() {
+        if (gV.toggled === true) {
+          $("#app-temp").html("Feels like: " + app_tempInC + "&deg;");
+
+            tempElement.innerText = tempInC;
+            tempElement.innerHTML += "&deg;C";
+            for (var i = 1; i <= 5; i++) {
+                tempC = Math.round((forecast_arr[i].temperatureMax - 32) * (5 / 9));
+                $(".day-container" + i + " span").html(tempC + "&deg;C");
+            }
+            gV.toggled = false;
+        } //end if statement
+        else if (gV.toggled === false) {
+          $("#app-temp").html("Feels like: " + app_temp + "&deg;");
+
+            tempElement.innerText = tempInF;
+            tempElement.innerHTML += "&deg;F";
+            for (var j = 1; j <= 5; j++) {
+                $(".day-container" + j + " span").html(Math.round(forecast_arr[j].temperatureMax) + "&deg;F");
+            }
+            gV.toggled = true;
+        }
+    });
+}
+
+
+//working
+function tempScale(temp) {
+    //convert temperature into a usable height
+    var fill_height = Math.round(temp * 1.7);
+    var color;
+    temp = Math.round(temp);
+
+    var applyCSS = () => {
+        $("#fill").css({
+            "background-color": color,
+            "height": fill_height
+        });
+      }
+
+    if (temp >= 0 && temp < 60) {
+        color = "#5daefe";
+        applyCSS();
+    } else if (temp >= 60 && temp < 80) {
+        color = "#5dfeae";
+        applyCSS();
+    } else if (temp >= 80 && temp < 90) {
+        color = "#feae5d";
+        applyCSS();
+    } else {
+        color = "#fe5d5d";
+        applyCSS();
+    }
+}
+
+function setTempPosition() {
+  var arrowLoc = $("#fill").offset();
+  var p_height = $("#temp").height();
+  var scale_width = $(".scale").width();
+  console.log(arrowLoc);
+  $(".temp").offset({top: arrowLoc.top - p_height / 2, left: arrowLoc.left + scale_width});
+   $("#temp").offset({top: arrowLoc.top - p_height / 2, left: arrowLoc.left + scale_width + 20})
+}
+
+        
+        
+      
+        
+    </script>
+    <style>
+        * {
+    font-family: 'Varela Round', sans-serif;
+    /*border: thin solid red;*/
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+ 
+    color: black;
+    
+}
+
+section {
+    display: none;
+}
+
+h1 {
+    text-align: center;
+}
+
+#location {
+    padding-top: 3rem;
+    font-size: 2rem;
+}
+
+.main-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    margin: 0 auto;
+    padding: 2rem;
+    max-width: 600px;
+}
+
+.canvas-description {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+}
+
+#skycon {
+    padding-top: 1.5rem;
+}
+
+.top {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    width: 100%;
+    height: 200px;
+    border-bottom: 3px solid #46ccb0;
+    border-top: 3px solid #46ccb0;
+}
+
+.faces {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+}
+
+.face {
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.info-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    border-bottom: 3px solid #46ccb0;
+}
+
+.temp {
+    -webkit-transition: all .5s;
+    transition: all .5s;
+}
+
+.temp:hover {
+    cursor: pointer;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    color: #46ccb0;
+}
+
+.scale {
+    margin: 0;
+    padding: 0;
+    width: 40px;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+#fill {
+    padding: 0;
+    display: inline-block;
+    width: 100%;
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.temp {
+    padding: 0;
+    font-size: 2rem;
+    display: inline;
+}
+
+#description {
+    text-align: center;
+}
+
+#temp i {
+    margin-right: .5rem;
+}
+
+#location {
+    text-align: center;
+}
+
+.small-info-text {
+    font-size: 1.2rem;
+}
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+/*SEARCH~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.location-search {
+    margin: 15rem auto;
+    width: 100%;
+}
+
+.location-search span {
+    display: block;
+    text-align: center;
+}
+
+.location-search input {
+    width: 400px;
+    background-color: #dce6e4;
+    !important
+}
+
+button {
+    /*box-shadow: inset 0 -2px 0 black;*/
+    -webkit-transition: all .2s;
+    transition: all .2s;
+    background-color: white;
+    border: 3px solid #46ccb0;
+    border-radius: 5px;
+    padding: .3rem;
+    width: 150px;
+    min-height: 38px;
+    margin-left: 30px;
+    color: #46ccb0;
+}
+
+button:hover {
+    -webkit-transition: all .2s;
+    transition: all .2s;
+    background-color: #46ccb0;
+    color: white;
+}
+
+.location-search button:hover {
+    cursor: pointer;
+}
+
+button, input {
+    font-size: 1.3rem;
+    height: 30px;
+}
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+/*forecast~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.forecast {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    margin: 4rem auto;
+    -ms-flex-item-align: center;
+    align-self: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+}
+
+
+
+.dc {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    width: 20%;
+    height: 120px;
+    padding: 1rem 1rem;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.dc canvas {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100px;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+}
+
+.day, .mini-temp, .dc canvas {
+    -ms-flex-item-align: center;
+    align-self: center;
+    margin: 0;
+}
+
+.mini-scale, .mini-fill {
+    min-width: 20px;
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+}
+
+.mini-fill {
+    max-height: 120px;
+    background-color: green;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.mini-scale {
+    min-height: 120px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+/*Footer~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 7%;
+    background-color: rgba(0, 0, 0, .1);
+    text-align: center;
+    color: black;
+}
+
+footer a {
+    text-decoration: none;
+    text-decoration: underline;
+    color: #46ccb0;
+}
+
+@media(min-width: 700px) {
+    #wind, #rain {
+        margin-left: -75px;
+    }
+    .forecast {
+        max-width: 1000px;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    }
+    body {
+        background: -webkit-linear-gradient(45deg, #d0f2eb 15%, #fefdfb 15%, #fefdfb 85%, #d0f2eb 85%);
+        background: linear-gradient(45deg, #d0f2eb 15%, #fefdfb 15%, #fefdfb 85%, #d0f2eb 85%);
+    }
+}
+
+    </style>
+    
+    
+    
+    
+    <span id="txt">search the map</span>
+<br />
+ <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    
+  </div>
+  <input type="text" class="form-control" id="selectCity" value="" aria-describedby="basic-addon3" style="width:100%;">
+  <span class="input-group-text" id="click" onClick="t()">search</span>
+  
+</div>
+
+
+
+
+
+<br>
+<br>
+
+<br />
+<iframe width="100%" height="700" id="gmap" src="" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+        style="float:right;"></iframe>
+<style>
+   @import url('https://fonts.googleapis.com/css?family=PT+Mono');
+
+
+*{
+font-family: 'PT Mono', monospace;
+}
+
+body{
+    padding: 5px;
+
+    }
+
+
+.container{
+
+
+}
+
+
+.weather{
+margin:0 auto;
+padding:10px;
+height:400px;
+width:100%;
+border:2px solid #2196F3;
+border-radius:5px;
+background-image:url("https://wallpapercave.com/wp/Qb2bUq0.jpg");
+color:#fff;
+box-shadow:2px 2px 15px 1px #03A9F4;
+      
+}
+
+
+.input-group-text{
+position:relative ;
+background-color: mediumblue;
+color: #fff;
+cursor: pointer;
+float:right;
+}
+
+
+
+#countryName{
+font-weight:bold;
+display:inline-block ;
+line-height:5px;
+}
+
+
+span
+{
+line-height:5px;
+        float:right;
+}
+
+
+
+#currentWeather{
+font-weight:bold;
+font-size:5em;
+}
+
+
+
+#humidity{
+float: right;
+
+}
+
+
+#wind{
+float: right;
+
+}
+
+
+
+.btn-info{
+width:50px;
+        float:right;
+}
+
+
+@media only screen and (min-width: 60px){
+.weather{
+width: 10%;
+    float:right;
+}
+
+
+}
+
+
+
+#txt{
+font-weight:lighter;
+color:black;
+
+line-height:0.9;
+font-size:1em;
+    float:right;
+
+}
+
+
+.weather{
+margin:0 auto;
+padding:10px;
+width:100%;
+border:2px solid #2196F3;
+border-radius:5px;
+background-color:#2196F3;
+color:black;
+box-shadow:2px 2px 15px 1px #03A9F4;
+    float:center;
+}
+
+.input-group-text{
+position:relative ;
+background-color: #4caf50;
+color: blacks;
+cursor: pointer;
+    float:right;
+}
+
+
+#countryName{
+font-weight:bold;
+display:inline-block ;
+line-height:5px;
+    float:right;
+}
+
+
+span{
+line-height:5px;
+}
+
+
+
+#currentWeather{
+font-weight:bold;
+font-size:5em;
+} 
+</style>
+<script>
+    window.onload=function(){
+
+     document.getElementById("selectCity").value =  country_name[Math.floor(Math.random()*country_name.length)];;
+}
+var date=new Date();
+  
+   var days = [
+   "Sunday",
+    "Monday",
+     "Tuesday",
+      "Wednesday",
+       "Thursday",
+        "Friday",
+         "Saturday"
+         ];
+
+var country_name = [
+ 
+
+         "London"
+       
+];
+
+    function t(){
+     
+      var city=$("#selectCity").val();
+       var cTemp ;
+
+var apicall="https://api.openweathermap.org/data/2.5/weather?q="+city+"&units=metric&appid=af50bbd7309f973b6a2318253e78ad20";
+ $.getJSON(apicall,weatherCallback);
+
+    function weatherCallback(weatherData) {
+     var icn= weatherData.weather[0].icon;
+      var  temp=weatherData.main.temp;
+       var country=weatherData.name;
+        var des=weatherData.weather[0].description;
+         var humidity=weatherData.main.humidity;
+          var wind=weatherData.wind.speed;
+           var iconurl = "https://openweathermap.org/img/w/" + icn + ".png";
+  
+      $('#wicon').attr('src', iconurl);
+       $("#countryName").html(country)
+        $("#weatherMessage").html(des)
+         $("#currentWeather").html(temp+"°C")
+          $("#humidity").html("Humidity:"+humidity+"%")
+           $("#wind").html("Wind:"+wind+"km/h") 
+            $("#today").html(days[date.getDay()]+"-");
+             $("#time").html(date.getHours()+":"+date.getMinutes()+"-")
+     
+     
+      $("#gmap").attr('src',"https://maps.google.com/maps?q="+city+"&t=&z=13&ie=UTF8&iwloc=&output=embed")
+        }
+
+ }
+
+</script>
+    </body>
+</html>
